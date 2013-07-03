@@ -20,7 +20,7 @@ test '(/ 5000 20 100)', 2.5
 test '(+ 20 (+ 20 20)))', 60
 test '(+ (+ 1 1) (+ 1 1))', 4
 test '(* 20 (+ 20 20)))', 800
-test '(> 20 30)', no
+test '(> 20 30)', no  
 test '(> 20 30 19)', false
 test '(< 10 100 1000)', yes
 test '(= true true true)', yes
@@ -37,3 +37,6 @@ test '(define no false)', false
 test '(define x (+ (* 2 2) (* 2 2)))', 8
 test 'x', 8
 test '((lambda i (* i i)) 4)', 16
+test '((defn adder (a b) (+ a b)) 1 2)', 3
+test "(get 'a' (define (a) (obj 'a' 1)))", 1
+test "(set 'a' 2 (define (a) (obj 'a' 1)))", 2

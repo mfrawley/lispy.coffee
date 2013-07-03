@@ -1,2 +1,2 @@
 #!/bin/bash
-coffee src/repl.coffee
+rlwrap coffee src/repl.coffee

@@ -60,6 +60,16 @@ evaluate = (expr, locals={}) ->
             [x, name, expression] = expr
             globals[name] = evaluate(expression)
             return globals[name]
+        #(defn name (args) (body))
+        when 'defn'
+            [x, name, vars, expression] = expr
+            globals[name] = (args...) ->
+                evaluate(expression, utils.createobj(vars, args))
+            return globals[name]
+        when 'defmacro'
+            [x, name, vars, expression] = expr
+            globals[name] = (args...) -> expression
+            return globals[name]            
         when 'lambda'
             [x, vars, expression] = expr
             return (args...) ->
@@ -80,6 +90,4 @@ to_string = (expr) ->
 
 # Exports
 exports.eval = (code) -> evaluate(parse(code))
-
-
 
